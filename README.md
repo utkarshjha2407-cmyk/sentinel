@@ -74,6 +74,3 @@ Then open `http://localhost:8000` in your browser.
 | **✅ Google Cloud Invoice** | Legitimate Verified Mail | All SPF, DKIM, and DMARC checks PASS, genuine Google Mountain View IP, 0% threat score. |
 
 ---
-
-**Q3: How is this useful for Law Enforcement / Police Cyber Cells?**  
-*Answer:* Law enforcement requires court-admissible evidence. Our platform generates SHA-256 cryptographic hashes of the raw email payload at ingestion to ensure non-repudiation and produces structured forensic dossiers containing IP addresses, ASNs, ISP details, and timestamped routing paths.
