@@ -106,16 +106,6 @@ class AppController {
         }
 
         // Report & Export Actions
-        const exportJsonBtn = document.getElementById("exportJsonBtn");
-        if (exportJsonBtn) {
-            exportJsonBtn.addEventListener("click", () => this.exportJSON());
-        }
-
-        const printReportBtn = document.getElementById("printReportBtn");
-        if (printReportBtn) {
-            printReportBtn.addEventListener("click", () => this.generatePrintReport());
-        }
-
         const copyHashBtn = document.getElementById("copyHashBtn");
         if (copyHashBtn) {
             copyHashBtn.addEventListener("click", () => this.copyEvidenceHash());
