@@ -45,25 +45,6 @@ Email remains the #1 initial infection vector for cyberattacks globally (account
 - **Incident Case Log:** Persistent local case file archive for tracking ongoing campaigns.
 
 
-## ⚡ How to Run Locally
-
-### Option 1: Double-Click (Zero Setup)
-Simply open `index.html` in any modern web browser (Google Chrome, Microsoft Edge, Mozilla Firefox, Brave).
-
-### Option 2: Local HTTP Server (Recommended for Live Demos)
-Run any of the following commands in the project folder:
-
-```bash
-# Using Python 3:
-python3 -m http.server 8000
-
-# Or using npx serve:
-npx serve .
-```
-Then open `http://localhost:8000` in your browser.
-
----
-
 ## 🎯 Demo
 
 | Preset Name | Threat Type | Key Forensic Indicators |
