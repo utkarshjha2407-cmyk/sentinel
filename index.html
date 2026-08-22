@@ -22,20 +22,19 @@
     <header class="top-navbar">
         <div class="brand-container">
             <div class="brand-logo">🛡️</div>
-            <div>
-                <div class="brand-title">Sentinel</div>
-            </div>
-            <span class="sih-badge">SIH 2024–2026 EDITION</span>
+            <div class="brand-title">Sentinel</div>
         </div>
 
         <nav>
             <ul class="nav-menu">
-                <li><button class="nav-link active" data-tab="view-analyzer">🔍 Threat Analyzer</button></li>
+                <li><button class="nav-link active" data-tab="view-analyzer">🔍 Analyzer</button></li>
                 <li><button class="nav-link" data-tab="view-geo">🗺️ GeoTrace Map</button></li>
-                <li><button class="nav-link" data-tab="view-graph">🕸️ Attribution Graph</button></li>
+                <li><button class="nav-link" data-tab="view-graph">🕸️ Attribution</button></li>
                 <li><button class="nav-link" data-tab="view-cases">📂 Case Log</button></li>
             </ul>
         </nav>
+
+
     </header>
 
     <!-- ==================== Main Application Container ==================== -->
@@ -44,7 +43,6 @@
         <!-- ==================== VIEW 1: THREAT ANALYZER ==================== -->
         <section id="view-analyzer" class="view-section active">
             
-            <!-- 1-Click SIH Hackathon Demo Presets -->
             <div class="section-header">
                 <h2>⚡ Demo Presets</h2>
             </div>
@@ -52,37 +50,37 @@
             <div class="presets-grid">
                 <div class="preset-card active" data-sample="sbi_phishing">
                     <div class="preset-card-top">
-                        <span class="preset-title">🚨 SBI NetBanking KYC Phish</span>
+                        <span class="preset-title">🚨 SBI KYC Phishing</span>
                         <span class="verdict-badge verdict-critical">CRITICAL</span>
                     </div>
-                    <p class="preset-desc">Russian bulletproof server spoofing official SBI domain with urgent KYC expiry coercive threats.</p>
+                    <p class="preset-desc">Spoofed SBI email with fake KYC deadline, originating from Russian bulletproof server.</p>
                     <div class="preset-meta">
                         <span>DMARC: FAIL</span>
-                        <span>IP: 194.26.29.134 (RU)</span>
+                        <span>194.26.29.134 · RU</span>
                     </div>
                 </div>
 
                 <div class="preset-card" data-sample="ceo_bec_fraud">
                     <div class="preset-card-top">
-                        <span class="preset-title">💼 CEO $385K Wire Fraud BEC</span>
+                        <span class="preset-title">💼 CEO Wire Fraud (BEC)</span>
                         <span class="verdict-badge verdict-critical">CRITICAL</span>
                     </div>
-                    <p class="preset-desc">Executive impersonation of Sundar Pichai urging secret escrow acquisition payment via Singapore VPN.</p>
+                    <p class="preset-desc">Fake CEO email requesting urgent $385K wire transfer through a Singapore VPN.</p>
                     <div class="preset-meta">
-                        <span>Type: BEC / Display Spoof</span>
-                        <span>IP: 103.145.74.88 (SG)</span>
+                        <span>BEC / Spoof</span>
+                        <span>103.145.74.88 · SG</span>
                     </div>
                 </div>
 
                 <div class="preset-card" data-sample="m365_credential_harvest">
                     <div class="preset-card-top">
-                        <span class="preset-title">🔑 M365 Password Expiry Trap</span>
-                        <span class="verdict-badge verdict-high">HIGH RISK</span>
+                        <span class="preset-title">🔑 M365 Password Trap</span>
+                        <span class="verdict-badge verdict-high">HIGH</span>
                     </div>
-                    <p class="preset-desc">Typosquatted domain (<code>m1crosoft-security</code>) attempting employee credential harvesting.</p>
+                    <p class="preset-desc">Typosquatted <code>m1crosoft-security</code> domain stealing employee credentials.</p>
                     <div class="preset-meta">
                         <span>SPF: SoftFail</span>
-                        <span>IP: 45.142.214.201 (DE)</span>
+                        <span>45.142.214.201 · DE</span>
                     </div>
                 </div>
 
@@ -91,10 +89,10 @@
                         <span class="preset-title">✅ Google Cloud Invoice</span>
                         <span class="verdict-badge verdict-clean">CLEAN</span>
                     </div>
-                    <p class="preset-desc">Authentic corporate billing communication with valid DKIM signature and strict DMARC alignment.</p>
+                    <p class="preset-desc">Legitimate billing email from Google with valid DKIM and strict DMARC pass.</p>
                     <div class="preset-meta">
                         <span>DMARC: PASS</span>
-                        <span>IP: 209.85.220.69 (US)</span>
+                        <span>209.85.220.69 · US</span>
                     </div>
                 </div>
             </div>
@@ -102,16 +100,16 @@
             <!-- Raw Header Input Console -->
             <div class="input-console-card">
                 <div class="console-header">
-                    <span class="console-title">📥 Ingest Raw Email Headers & Content (RFC 5322 / EML)</span>
+                    <span class="console-title">📥 Paste Raw Email Headers / Body</span>
                     <div class="dropzone-bar" id="emailDropZone">
                         <label class="file-upload-label" for="emlFileInput">
-                            📁 Upload .EML / .TXT
+                            📁 Upload .EML
                         </label>
                         <input type="file" id="emlFileInput" accept=".eml,.txt,.msg" style="display:none;">
                     </div>
                 </div>
 
-                <textarea id="rawEmailInput" class="raw-textarea" placeholder="Paste full raw email headers and body content here..."></textarea>
+                <textarea id="rawEmailInput" class="raw-textarea" placeholder="Paste raw email headers and body here, or click a preset above..."></textarea>
 
                 <div class="console-footer">
                     <span class="char-counter" id="inputCharCount">0 chars</span>
@@ -119,8 +117,8 @@
                         <span id="btnScanStatus" style="font-size: 0.78rem; color: var(--primary-cyan); font-family: var(--font-mono); margin-right: 0.75rem; display: none; align-items: center; gap: 0.4rem;">
                             <span class="btn-spinner"></span> <span id="btnScanStatusText">Scanning...</span>
                         </span>
-                        <button class="btn btn-secondary" id="clearInputBtn">Clear Input</button>
-                        <button class="btn btn-primary" id="analyzeBtn">⚡ Run Deep AI Forensic Scan</button>
+                        <button class="btn btn-secondary" id="clearInputBtn">Clear</button>
+                        <button class="btn btn-primary" id="analyzeBtn">⚡ Analyze Email</button>
                     </div>
                 </div>
             </div>
@@ -385,49 +383,9 @@
             </div>
         </section>
 
-        <!-- ==================== VIEW 5: SIH PITCH GUIDE & ARCHITECTURE ==================== -->
-        <section id="view-guide" class="view-section">
-            <div class="section-header">
-                <h2>💡 Smart India Hackathon (SIH) College Round Presentation Guide</h2>
-                <p class="section-subtitle">Key architecture highlights, problem statement mapping, and evaluator Q&A talking points for your team.</p>
-            </div>
-
-            <div class="sih-guide-container">
-                <div class="guide-card">
-                    <h3><span>🎯</span> Problem Statement Alignment</h3>
-                    <p><strong>Title:</strong> AI-Powered Email Threat Detection, GeoLocation and Forensic Intelligence Platform</p>
-                    <ul>
-                        <li><strong>Deep Header Forensics:</strong> Analyzes RFC 5322 headers, Return-Path, DKIM signatures, SPF alignment, and DMARC policies.</li>
-                        <li><strong>AI / NLP Engine:</strong> Scans subject lines and body for urgency cues, CEO BEC wire fraud, and credential harvesting traps.</li>
-                        <li><strong>GeoLocation Trace:</strong> Reconstructs relay chains, extracts earliest public IP, and maps origins on an interactive globe.</li>
-                        <li><strong>Attribution Graph:</strong> Correlates infrastructure to expose threat actor clusters and spoofed domains.</li>
-                    </ul>
-                </div>
-
-                <div class="guide-card">
-                    <h3><span>⚙️</span> Technical Architecture</h3>
-                    <p>Designed with clean, modular HTML, CSS, and JS components:</p>
-                    <ul>
-                        <li><strong>Presentation Layer:</strong> Cyber SOC dark interface with Leaflet.js interactive dark-mode maps and HTML5 Canvas graphs.</li>
-                        <li><strong>Forensic Core:</strong> Custom RFC 5322 MIME parser, SPF/DKIM/DMARC validator, and Levenshtein lookalike domain scanner.</li>
-                        <li><strong>Evidence & Compliance:</strong> SHA-256 cryptographic hashing per ISO/IEC 27037 digital forensics guidelines.</li>
-                        <li><strong>Zero-Dependency Portability:</strong> Runs seamlessly on any standard browser or web server.</li>
-                    </ul>
-                </div>
-
-                <div class="guide-card">
-                    <h3><span>🎤</span> College Round Pitch Script</h3>
-                    <p>How to present to the judges:</p>
-                    <ul>
-                        <li><strong>Opening (30s):</strong> "Traditional spam filters only block emails. Our platform traces where attacks come from, providing deep forensic attribution and evidentiary intelligence."</li>
-                        <li><strong>Live Demo (60s):</strong> Click the 1-Click presets (SBI Phish & CEO BEC) to show instant GeoTrace, SPF/DMARC fail alerts, and the Attribution Graph.</li>
-                        <li><strong>Outcome (30s):</strong> "Provides SOC teams and law enforcement with tamper-evident digital reports for rapid prosecution and cyber incident response."</li>
-                    </ul>
-                </div>
-            </div>
-        </section>
 
     </main>
+
 
     <!-- ==================== PRINTABLE FORENSIC DOSSIER MODAL ==================== -->
     <div id="reportModal" class="modal-overlay">
